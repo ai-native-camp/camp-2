@@ -1,0 +1,8 @@
+.mcp.local.json
+.mcp-servers-cache.md
+mcp_servers.py
+CLAUDE.md
+.DS_Store
+scripts/.cache/
+**/.cache/
+.claude/settings.json
