@@ -47,18 +47,38 @@ Day 1~3에서 배운 것들을 정리할 때입니다:
 
 GitHub은 코드와 문서를 함께 관리하고 공유하는 온라인 서비스입니다. Google Docs의 코드 버전이라고 생각하세요.
 
+**여러분의 개인 저장소(repo)가 이미 만들어져 있습니다.**
+
+운영진이 캠프 시작 전에 여러분 각자의 GitHub ID로 private repo를 만들어뒀습니다:
+
+```
+https://github.com/ai-native-camp/{여러분의-github-id}
+```
+
+이 repo는 PRD만 넣는 곳이 아닙니다. 캠프 기간 동안 만드는 **모든 작업물**(스킬, PRD, 과제 결과물)이 여기에 쌓입니다. 캠프가 끝나면 여러분의 포트폴리오가 됩니다.
+
+> **GitHub이 처음이라면?** [git-for-everyone](https://github.com/ai-native-camp/git-for-everyone) 플러그인을 설치하세요.
+> 이 플러그인은 **1기 개발자 캠퍼들이 비개발자를 위해 직접 만든** Claude Code 플러그인입니다.
+>
+> ```
+> /plugin install git-onboarding
+> ```
+>
+> 설치 후 `/git-onboarding-auto`를 실행하면, 환경 점검 → Git 설정 → 파일 생성 → 브랜치 → PR 생성까지 **한 번에 자동 처리**합니다. 이미 설정이 된 환경이면 필요한 단계만 건너뛰고 바로 진행됩니다. 막히면 `/git-onboarding-help`로 용어 설명과 FAQ를 볼 수 있습니다.
+
 **제출 과정 요약:**
 
 ```
-[PRD 작성] → [git으로 저장] → [GitHub에 올리기] → [PR로 검토 요청]
+[개인 repo clone] → [PRD 작성] → [브랜치에서 저장] → [PR로 검토 요청]
 ```
 
 | 단계 | 명령 | 비유 |
 |------|------|------|
-| 브랜치 생성 | `git checkout -b prd/{id}` | "사본으로 저장" |
-| 파일 등록 | `git add {id}/PRD.md` | "제출할 파일 선택" |
+| 내 repo 가져오기 | `gh repo clone ai-native-camp/{id}` | "내 폴더를 컴퓨터에 받기" |
+| 브랜치 생성 | `git checkout -b prd` | "사본으로 저장" |
+| 파일 등록 | `git add PRD.md` | "제출할 파일 선택" |
 | 저장 | `git commit -m "..."` | "Ctrl+S의 Git 버전" |
-| 업로드 | `git push origin prd/{id}` | "온라인에 올리기" |
+| 업로드 | `git push origin prd` | "온라인에 올리기" |
 | 검토 요청 | `gh pr create ...` | "제출 버튼 누르기" |
 
 > **걱정하지 마세요.** Claude가 모든 명령어를 자동으로 실행합니다. 여러분은 내용만 채우면 됩니다.
@@ -76,19 +96,30 @@ git이 설치되어 있는지, gh CLI가 인증되어 있는지 확인해줘.
 ```
 
 > 문제가 있으면 Claude가 해결 방법을 안내합니다. 모두 통과하면 다음 단계로.
+>
+> GitHub이 처음이라면 [git-for-everyone](https://github.com/ai-native-camp/git-for-everyone) 플러그인을 설치하세요. 1기 개발자 캠퍼들이 만든 Git 자동 온보딩 도구입니다. `/git-onboarding-auto` 한 줄이면 설정부터 PR까지 자동으로 진행됩니다.
 
-### Step 1: PRD 작성
+### Step 1: 내 repo 가져오기
+
+```
+내 GitHub 개인 repo를 clone해줘.
+내 GitHub ID를 물어봐줘.
+repo 주소는 ai-native-camp/{내 GitHub ID}야.
+```
+
+> Claude가 GitHub ID를 물어본 뒤 `gh repo clone ai-native-camp/{id}`로 여러분의 개인 repo를 가져옵니다.
+
+### Step 2: PRD 작성
 
 ```
 오늘까지 배운 내용을 바탕으로 PRD를 작성해줘.
 PRD 템플릿을 써서, 내가 캠프에서 만든 스킬 기반으로.
-.claude/skills/ 폴더에 어떤 스킬이 있는지 먼저 확인하고,
-내 GitHub ID를 물어봐줘.
+.claude/skills/ 폴더에 어떤 스킬이 있는지 먼저 확인해줘.
 ```
 
-> Claude가 먼저 GitHub ID를 물어보고, 여러분이 만든 스킬 목록을 보여준 다음, PRD 초안을 작성합니다.
+> Claude가 여러분이 만든 스킬 목록을 보여준 다음, PRD 초안을 작성합니다.
 
-### Step 2: PRD 검증
+### Step 3: PRD 검증
 
 Claude가 아래 8개 항목을 자동으로 검증합니다:
 
@@ -103,16 +134,16 @@ Claude가 아래 8개 항목을 자동으로 검증합니다:
 | 7 | 스킬 2개 이상 | 필수 |
 | 8 | 변화 기록 | 필수 |
 
-### Step 3: GitHub PR 제출
+### Step 4: GitHub PR 제출
 
 검증 통과 후:
 
 ```
-PRD를 GitHub에 제출해줘. PR까지 만들어줘.
+PRD를 내 GitHub repo에 제출해줘. PR까지 만들어줘.
 ```
 
-> Claude가 브랜치 생성 → commit → push → PR 생성을 자동으로 처리합니다.
-> 완료되면 PR URL이 출력됩니다.
+> Claude가 개인 repo에서 브랜치 생성 → commit → push → PR 생성을 자동으로 처리합니다.
+> 완료되면 PR URL이 출력됩니다. 이 URL을 과제 제출에 사용합니다.
 
 ---
 
